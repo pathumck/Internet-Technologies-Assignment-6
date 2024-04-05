@@ -1,0 +1,36 @@
+.nav-position {
+    height: 55px;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.margin-space {
+    margin-right: 10px;
+}
+
+
+section {
+    position: absolute;
+    top: 55px;
+    left: 0px;
+    width: 100vw;
+    height: calc(100vh - 55px);
+}
+
+.bg {
+    background-color: darkseagreen;
+}
+
+.nav-align {
+    align-items: normal;
+    padding: 0;
+}

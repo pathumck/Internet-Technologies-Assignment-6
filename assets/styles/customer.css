@@ -1,0 +1,47 @@
+.nav-position {
+    height: 55px;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 1;
+}
+
+.margin-space {
+    margin-right: 10px;
+}
+
+.margin-space-1 {
+    margin-top: 10px;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+section {
+    position: absolute;
+    top: 55px;
+    left: 0px;
+    width: 100vw;
+    height: calc(100vh - 55px);
+}
+
+.table-action-col {
+    width: 200px;
+}
+
+.btn-length {
+    width: 170px;
+}
+
+.bg {
+    background-color: darkseagreen;
+}
+
+.nav-align {
+    align-items: normal;
+    padding: 0;
+}
