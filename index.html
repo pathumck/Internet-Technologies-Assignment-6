@@ -558,6 +558,192 @@
     </div>
 </section>
 
+    <!--Order-Section-->
+    <section id="Order-Section">
+        <br>
+        <!--Order icon and title-->
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-12 col-md-8"></div>
+                <div class="col-12 col-md-4">
+                    <h3><img class="margin-space" src="/assets/images/order-logo.png" title="items-logo" alt="items-logo" width="55px">Order</h3>
+                </div>
+            </div>
+        </div><br>
+
+        <!--Three Cards-->
+        <div class="container">
+
+            <div class="row">
+
+                <!--Select Customer Card-->
+                <div class="col-12 col-md-4">
+                    <div class="card border-success mb-3">
+                        <div class="card-header">Invoice Details</div>
+                        <div class="card-body text-success">
+                            <form class="row">
+                                <!--Order Id-->
+                                <div class="col-md-6">
+                                    <label for="orderid" class="form-label">Order ID :</label>
+                                    <input type="text" class="form-control" id="orderid" placeholder="o001">
+                                </div>
+                                <!--Date-->
+                                <div class="col-md-6">
+                                    <label for="date" class="form-label">Date :</label>
+                                    <input type="text" class="form-control" id="date" placeholder="2024-03-02">
+                                </div>
+                                <!--Select customer id-->
+                                <div class="col-md-6">
+                                    <label for="selectcusid" class="form-label">Customer ID :</label>
+                                    <select id="selectcusid" class="form-select">
+                                        <option selected>c001</option>
+                                    </select>
+                                </div>
+                                <!--Customer id-->
+                                <div class="col-md-6">
+                                    <label for="cusid" class="form-label">Customer ID :</label>
+                                    <input type="text" class="form-control" id="cusid" placeholder="c001">
+                                </div>
+                                <!--Customer name-->
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label">Name :</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Pathum">
+                                </div>
+                                <!--Customer tp-->
+                                <div class="col-md-6">
+                                    <label for="tp" class="form-label">Tp :</label>
+                                    <input type="text" class="form-control" id="tp" placeholder="0771234563">
+                                </div>
+                                <!--Customer address-->
+                                <div class="col-md-12">
+                                    <label for="address" class="form-label">Address :</label>
+                                    <input type="text" class="form-control" id="address" placeholder="Kandy">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Select items card-->
+                <div class="col-12 col-md-4">
+                    <div class="card border-success mb-3">
+                        <div class="card-header">Item Details</div>
+                        <div class="card-body text-success">
+                            <div class="row">
+                                <!--Select item code-->
+                                <div class="col-md-6">
+                                    <label for="selectitemcode" class="form-label">Item Code :</label>
+                                    <select id="selectitemcode" class="form-select">
+                                        <option selected>i001</option>
+                                    </select>
+                                </div>
+                                <!--Item Code-->
+                                <div class="col-md-6">
+                                    <label for="itemcode" class="form-label">Item Code :</label>
+                                    <input type="text" class="form-control" id="itemcode" placeholder="i001">
+                                </div>
+                                <!--Item name-->
+                                <div class="col-md-6">
+                                    <label for="itemname" class="form-label">Name :</label>
+                                    <input type="text" class="form-control" id="itemname" placeholder="soap">
+                                </div>
+                                <!--Item price-->
+                                <div class="col-md-6">
+                                    <label for="itemprice" class="form-label">Price(Lkr) :</label>
+                                    <input type="text" class="form-control" id="itemprice" placeholder="150.00">
+                                </div>
+                                <!--Qty on hand-->
+                                <div class="col-md-6">
+                                    <label for="qty" class="form-label">Qty On Hand :</label>
+                                    <input type="text" class="form-control" id="qty" placeholder="200">
+                                </div>
+                                <!--Order qty-->
+                                <div class="col-md-6">
+                                    <label for="orderqty" class="form-label">Order Qty :</label>
+                                    <input type="text" class="form-control" id="orderqty" placeholder="2">
+                                </div>
+                                <!--Btn add to cart-->
+                                <div class="col-md-12 d-flex justify-content-center mt-4 mb-2">
+                                    <button type="button" class="btn btn-primary">Add +</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Card calculation-->
+                <div class="col-12 col-md-4">
+                    <div class="card border-success mb-3">
+                        <div class="card-header">Calculation</div>
+                        <div class="card-body">
+
+                            <div class="row">
+                                <!--label total-->
+                                <div class="col-md-12 d-flex justify-content-center">
+                                    <label class="text-primary">Total : Lkr 300.00</label>
+                                </div>
+                                <!--label sub total-->
+                                <div class="col-md-12 d-flex justify-content-center">
+                                    <label class="text-danger">Sub Total : Lkr 270.00</label>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <!--Cash-->
+                                <div class="col-md-6">
+                                    <label for="cash" class="form-label">Cash(Lkr) :</label>
+                                    <input type="text" class="form-control" id="cash" placeholder="300">
+                                </div>
+                                <!--Discount-->
+                                <div class="col-md-6">
+                                    <label for="discount" class="form-label">Discount(%) :</label>
+                                    <input type="text" class="form-control" id="discount" placeholder="30">
+                                </div>
+                                <!--Balance-->
+                                <div class="col-md-12">
+                                    <label for="balance" class="form-label">Balance(Lkr) :</label>
+                                    <input type="text" class="form-control" id="balance" placeholder="30">
+                                </div>
+                                <!--Btn Purchase-->
+                                <div class="col-md-12 d-flex justify-content-center mt-4 mb-1">
+                                    <button type="button" class="btn btn-danger">Purchase</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Table Order Cart-->
+        <div class="container">
+
+            <table class="table table-success">
+                <thead>
+                <tr>
+                    <th scope="col">Item Code</th>
+                    <th scope="col">Item Name</th>
+                    <th scope="col">Unit Price (Lkr)</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col" class="table-action-col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">i001</th>
+                    <td>Soap</td>
+                    <td>150.00</td>
+                    <td>2</td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </section>
 
 
 
