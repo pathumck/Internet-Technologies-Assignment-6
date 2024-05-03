@@ -12,6 +12,7 @@ $("#btnLogin").eq(0).on('click', () => {
     $('#Item-Section').hide();
     $('#Customer-Section').hide();
     $('#Order-Section').hide();
+    $('#Order-Details-Section').hide();
 });
 
 $('#spanHome').on('click', function() {
