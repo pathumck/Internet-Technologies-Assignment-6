@@ -15,12 +15,14 @@ $("#btnLogin").eq(0).on('click', () => {
 
 $('#spanHome').on('click', function() {
     $('#header').show();
+    $('#Home-Section').show();
     $('#Item-Section').hide();
     $('#Customer-Section').hide();
 });
 
 $('#spanItem').on('click', function() {
     $('#Item-Section').show();
+    $('#Home-Section').hide();
     $('#Customer-Section').hide();
 });
 

@@ -3,7 +3,7 @@
     width: 100vw;
     top: 0;
     left: 0;
-    position: fixed;
+    position: relative;
     z-index: 1;
 }
 
@@ -21,7 +21,7 @@ body {
     background-color: darkseagreen;
 }
 
-section {
+#Home-Section {
     position: absolute;
     top: 55px;
     left: 0px;
