@@ -20,6 +20,7 @@ $('#spanHome').on('click', function() {
     $('#Item-Section').hide();
     $('#Customer-Section').hide();
     $('#Order-Section').hide();
+    $('#Order-Details-Section').hide();
 });
 
 $('#spanItem').on('click', function() {
@@ -27,6 +28,7 @@ $('#spanItem').on('click', function() {
     $('#Home-Section').hide();
     $('#Customer-Section').hide();
     $('#Order-Section').hide();
+    $('#Order-Details-Section').hide();
 });
 
 $('#spanCustomer').on('click', function() {
@@ -34,10 +36,20 @@ $('#spanCustomer').on('click', function() {
     $('#Item-Section').hide();
     $('#Home-Section').hide();
     $('#Order-Section').hide();
+    $('#Order-Details-Section').hide();
 });
 
 $('#spanOrder').on('click', function() {
     $('#Order-Section').show();
+    $('#Customer-Section').hide();
+    $('#Item-Section').hide();
+    $('#Home-Section').hide();
+    $('#Order-Details-Section').hide();
+});
+
+$('#spanOrderDetail').on('click', function() {
+    $('#Order-Details-Section').show();
+    $('#Order-Section').hide();
     $('#Customer-Section').hide();
     $('#Item-Section').hide();
     $('#Home-Section').hide();
