@@ -1,0 +1,12 @@
+function replaceStyleSheet(stylesheetURL) {
+
+    $('#page-style-sheet').remove();
+    $('head').append('<link id="#page-style-sheet" rel="stylesheet" type="text/css" href="' + stylesheetURL + '">');
+
+}
+
+$("#btnLogin").eq(0).on('click', () => {
+    replaceStyleSheet('/assets/styles/home.css');
+    $('#header').css({display: 'block'});
+    $('#login').css({display: 'none'});
+});
