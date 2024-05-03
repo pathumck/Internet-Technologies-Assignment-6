@@ -15,6 +15,7 @@ $("#btnLogin").eq(0).on('click', () => {
 });
 
 $('#spanHome').on('click', function() {
+    replaceStyleSheet('/assets/styles/home.css');
     $('#header').show();
     $('#Home-Section').show();
     $('#Item-Section').hide();
@@ -24,6 +25,7 @@ $('#spanHome').on('click', function() {
 });
 
 $('#spanItem').on('click', function() {
+    replaceStyleSheet('/assets/styles/item.css');
     $('#Item-Section').show();
     $('#Home-Section').hide();
     $('#Customer-Section').hide();
@@ -32,6 +34,7 @@ $('#spanItem').on('click', function() {
 });
 
 $('#spanCustomer').on('click', function() {
+    replaceStyleSheet('/assets/styles/customer.css');
     $('#Customer-Section').show();
     $('#Item-Section').hide();
     $('#Home-Section').hide();
@@ -40,6 +43,7 @@ $('#spanCustomer').on('click', function() {
 });
 
 $('#spanOrder').on('click', function() {
+    replaceStyleSheet('/assets/styles/orders.css');
     $('#Order-Section').show();
     $('#Customer-Section').hide();
     $('#Item-Section').hide();
@@ -48,6 +52,7 @@ $('#spanOrder').on('click', function() {
 });
 
 $('#spanOrderDetail').on('click', function() {
+    replaceStyleSheet('/assets/styles/order_details.css');
     $('#Order-Details-Section').show();
     $('#Order-Section').hide();
     $('#Customer-Section').hide();
