@@ -11,6 +11,7 @@ $('#item-save').click(function () {
     let itemm = new ItemModel(code, name, price, qty);
     items.push(itemm);
 
+    //clear model fields
     $('#item-code').val('');
     $('#item-name').val('');
     $('#item-price').val('');
@@ -20,9 +21,8 @@ $('#item-save').click(function () {
 });
 
 function loadTable() {
-    var tableBody = $('#table-item').find('tbody'); // Find the tbody element inside #table-item
+    var tableBody = $('#table-item').find('tbody');
 
-    // Clear existing rows
     tableBody.empty();
 
     items.forEach(function (item, index) {
@@ -34,20 +34,24 @@ function loadTable() {
         $('<td>').text(item.qty).appendTo(row);
 
         var actionCell = $('<td>').addClass('table-action-col').appendTo(row);
+
         $('<button>').text('Update').addClass('btn btn-primary btn-sm mr-1')
             .on('click', function () {
-
             }).appendTo(actionCell);
 
         $('<button>').text('Delete').addClass('btn btn-danger btn-sm')
             .on('click', function () {
-
-                items.splice(index, 1);
-                loadTable();
+                var confirmDelete = confirm('Are you sure you want to delete this item?');
+                if (confirmDelete) {
+                    items.splice(index, 1);
+                    loadTable();
+                }
             }).appendTo(actionCell);
 
         row.appendTo(tableBody);
     });
 }
+
+
 
 
