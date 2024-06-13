@@ -235,59 +235,59 @@
                 </div>
                 <!--Add new Item-->
                 <div class="col-6 col-md-3 margin-space-1">
-                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Add New Item +</button>
+                    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ItemExampleModal">Add New Item +</button>
                 </div>
 
                 <!--Add New Item Model-->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="ItemExampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Item</h1>
+                                <h1 class="modal-title fs-5" id="ItemExampleModalLabel">Add New Item</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="container text-center">
                                     <div class="row">
                                         <div class="col-6">
-                                            <label for="code">Item Code :</label>
+                                            <label for="item-code">Item Code :</label>
                                         </div>
                                         <div class="col-6">
-                                            <input id="code" class="form-control me-2" type="text" placeholder="">
-                                        </div>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label for="name">Item Name :</label>
-                                        </div>
-                                        <div class="col-6">
-                                            <input id="name" class="form-control me-2" type="text" placeholder="">
+                                            <input id="item-code" class="form-control me-2" type="text" placeholder="">
                                         </div>
                                     </div>
                                     <br>
                                     <div class="row">
                                         <div class="col-6">
-                                            <label for="price">Unit Price :</label>
+                                            <label for="item-name">Item Name :</label>
                                         </div>
                                         <div class="col-6">
-                                            <input id="price" class="form-control me-2" type="text" placeholder="">
+                                            <input id="item-name" class="form-control me-2" type="text" placeholder="">
                                         </div>
                                     </div>
                                     <br>
                                     <div class="row">
                                         <div class="col-6">
-                                            <label for="qty">Qty :</label>
+                                            <label for="item-price">Unit Price :</label>
                                         </div>
                                         <div class="col-6">
-                                            <input id="qty" class="form-control me-2" type="text" placeholder="">
+                                            <input id="item-price" class="form-control me-2" type="text" placeholder="">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="item-qty">Qty :</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input id="item-qty" class="form-control me-2" type="text" placeholder="">
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save Item</button>
+                                <button id="item-save" type="button" class="btn btn-primary">Save Item</button>
                             </div>
                             <br>
                         </div>
@@ -296,7 +296,7 @@
 
                 <!--Refresh Item page-->
                 <div class="col-6 col-md-3 margin-space-1">
-                    <button type="reset" class="btn btn-dark btn-length">Refresh</button>
+                    <button id="item-refresh" type="reset" class="btn btn-dark btn-length">Refresh</button>
                 </div>
                 <div class="col-12 col-md-2 margin-space-1"></div>
 
@@ -304,7 +304,7 @@
                 <div class="col-12 col-md-4 margin-space-1">
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <button class="btn btn-outline-success" type="button">Search</button>
                     </form>
                 </div>
             </div>
@@ -315,7 +315,7 @@
 
         <!--Table Items-->
         <div class="container">
-            <table class="table table-success">
+            <table id="table-item" class="table table-success">
                 <thead>
                 <tr>
                     <th scope="col">Item Code</th>
@@ -326,65 +326,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">i001</th>
-                    <td>Soap</td>
-                    <td>145.00</td>
-                    <td>100</td>
-                    <td>
-                        <button type="button" class="btn btn-primary btn-sm ">Update</button>
-                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">i002</th>
-                    <td>Brush</td>
-                    <td>100.00</td>
-                    <td>89</td>
-                    <td>
-                        <button type="button" class="btn btn-primary btn-sm ">Update</button>
-                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">i003</th>
-                    <td>Milk Powder 400g</td>
-                    <td>1200.00</td>
-                    <td>50</td>
-                    <td>
-                        <button type="button" class="btn btn-primary btn-sm ">Update</button>
-                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">i004</th>
-                    <td>Sugar 500g</td>
-                    <td>200.00</td>
-                    <td>40</td>
-                    <td>
-                        <button type="button" class="btn btn-primary btn-sm ">Update</button>
-                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">i005</th>
-                    <td>Spoon</td>
-                    <td>150.00</td>
-                    <td>20</td>
-                    <td>
-                        <button type="button" class="btn btn-primary btn-sm ">Update</button>
-                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                    </td>
-                </tr><tr>
-                    <th scope="row">i006</th>
-                    <td>Tooth Paste 90g</td>
-                    <td>160.00</td>
-                    <td>40</td>
-                    <td>
-                        <button type="button" class="btn btn-primary btn-sm ">Update</button>
-                        <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                    </td>
-                </tr>
                 </tbody>
             </table>
         </div>
@@ -417,37 +358,37 @@
                             <div class="container text-center">
                                 <div class="row">
                                     <div class="col-6">
-                                        <label for="id">Customer id :</label>
+                                        <label for="customer-id">Customer id :</label>
                                     </div>
                                     <div class="col-6">
-                                        <input id="id" class="form-control me-2" type="text" placeholder="">
-                                    </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <label for="name">Item Name :</label>
-                                    </div>
-                                    <div class="col-6">
-                                        <input id="name" class="form-control me-2" type="text" placeholder="">
+                                        <input id="customer-id" class="form-control me-2" type="text" placeholder="">
                                     </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-6">
-                                        <label for="address">Customer Address :</label>
+                                        <label for="customer-name">Item Name :</label>
                                     </div>
                                     <div class="col-6">
-                                        <input id="address" class="form-control me-2" type="text" placeholder="">
+                                        <input id="customer-name" class="form-control me-2" type="text" placeholder="">
                                     </div>
                                 </div>
                                 <br>
                                 <div class="row">
                                     <div class="col-6">
-                                        <label for="tp">Customer Tp :</label>
+                                        <label for="customer-address">Customer Address :</label>
                                     </div>
                                     <div class="col-6">
-                                        <input id="tp" class="form-control me-2" type="tel" placeholder="">
+                                        <input id="customer-address" class="form-control me-2" type="text" placeholder="">
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="customer-tp">Customer Tp :</label>
+                                    </div>
+                                    <div class="col-6">
+                                        <input id="customer-tp" class="form-control me-2" type="tel" placeholder="">
                                     </div>
                                 </div>
                             </div>
@@ -932,5 +873,6 @@
 <script src="assets/js/jquery-3.7.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="assets/js/script.js"></script>
+<script type="module" src="controller/item_controller.js"></script>
 </body>
 </html>
