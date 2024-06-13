@@ -136,3 +136,8 @@ function searchItemByCode(searchCode) {
         row.appendTo(tableBody);
     });
 }
+
+$('#item-refresh').click(function () {
+   $('#lbl-search').val("");
+   loadTable();
+});
