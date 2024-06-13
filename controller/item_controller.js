@@ -35,10 +35,34 @@ function loadTable() {
 
         var actionCell = $('<td>').addClass('table-action-col').appendTo(row);
 
+        // Update button
         $('<button>').text('Update').addClass('btn btn-primary btn-sm mr-1')
             .on('click', function () {
+                // Populate modal with current item details
+                $('#update-item-code').val(item.code);
+                $('#update-item-name').val(item.name);
+                $('#update-item-price').val(item.price);
+                $('#update-item-qty').val(item.qty);
+
+                // Show the updateItemModal
+                $('#updateItemModal').modal('show');
+
+
+                $('#update-item-btn').off('click').on('click', function () {
+
+                    item.name = $('#update-item-name').val();
+                    item.price = $('#update-item-price').val();
+                    item.qty = $('#update-item-qty').val();
+
+
+                    $('#updateItemModal').modal('hide');
+
+
+                    loadTable();
+                });
             }).appendTo(actionCell);
 
+        // Delete button
         $('<button>').text('Delete').addClass('btn btn-danger btn-sm')
             .on('click', function () {
                 var confirmDelete = confirm('Are you sure you want to delete this item?');
