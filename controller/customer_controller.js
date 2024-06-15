@@ -136,3 +136,8 @@ function searchCustomerByCode(searchCode) {
     });
 }
 
+$('#customer-refresh').click(function () {
+    $('#lbl-search-customer').val("");
+    loadTable();
+});
+
