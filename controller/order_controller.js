@@ -1,8 +1,9 @@
-import {customers} from "../db/db.js";
+import {customers, items} from "../db/db.js";
 
 let orderCounter = 1;
 
 loadOrderId();
+loadItems();
 setDate();
 loadCustomers();
 function generateOrderId() {
@@ -36,6 +37,7 @@ function loadCustomers() {
 
 $("#spanOrder").on('click', () => {
     loadCustomers();
+    loadItems();
 });
 
 $('#selectcusid').click(function () {
@@ -48,4 +50,14 @@ $('#selectcusid').click(function () {
         }
     });
 });
+
+function loadItems() {
+    $('#selectitemcode').empty();
+
+    items.map(item => {
+        var recode = `<option>${item.code}</option>`
+        $('#selectitemcode').append(recode);
+    });
+
+}
 
