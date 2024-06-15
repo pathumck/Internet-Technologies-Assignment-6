@@ -652,7 +652,7 @@
                                 </div>
                                 <!--Btn add to cart-->
                                 <div class="col-md-12 d-flex justify-content-center mt-4 mb-2">
-                                    <button type="button" class="btn btn-primary">Add +</button>
+                                    <button id="btn-cart" type="button" class="btn btn-primary">Add +</button>
                                 </div>
                             </div>
                         </div>
@@ -668,11 +668,11 @@
                             <div class="row">
                                 <!--label total-->
                                 <div class="col-md-12 d-flex justify-content-center">
-                                    <label class="text-primary">Total :</label>
+                                    <label id="cart-total" class="text-primary">Total :</label>
                                 </div>
                                 <!--label sub total-->
                                 <div class="col-md-12 d-flex justify-content-center">
-                                    <label class="text-danger">Sub Total :</label>
+                                    <label id="sub-total" class="text-danger">Sub Total :</label>
                                 </div>
                             </div>
 
@@ -685,16 +685,16 @@
                                 <!--Discount-->
                                 <div class="col-md-6">
                                     <label for="discount" class="form-label">Discount(%) :</label>
-                                    <input type="text" class="form-control" id="discount" placeholder="">
+                                    <input type="number" min="0" max="50" class="form-control" id="discount" placeholder="">
                                 </div>
                                 <!--Balance-->
                                 <div class="col-md-12">
                                     <label for="balance" class="form-label">Balance(Lkr) :</label>
-                                    <input type="text" class="form-control" id="balance" placeholder="">
+                                    <input type="text" class="form-control" id="balance" placeholder="" readonly>
                                 </div>
                                 <!--Btn Purchase-->
                                 <div class="col-md-12 d-flex justify-content-center mt-4 mb-1">
-                                    <button type="button" class="btn btn-danger">Purchase</button>
+                                    <button id="purchase-btn" type="button" class="btn btn-danger">Purchase</button>
                                 </div>
                             </div>
                         </div>
@@ -706,17 +706,18 @@
         <!--Table Order Cart-->
         <div class="container">
 
-            <table class="table table-success">
+            <table id="table-cart" class="table table-success">
                 <thead>
                 <tr>
                     <th scope="col">Item Code</th>
                     <th scope="col">Item Name</th>
                     <th scope="col">Unit Price (Lkr)</th>
                     <th scope="col">Qty</th>
+                    <th scope="col">Total(Lkr)</th>
                     <th scope="col" class="table-action-col">Action</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="orderCart-tbody">
                 </tbody>
             </table>
 
@@ -752,153 +753,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td> </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
                 </tbody>
             </table>
 

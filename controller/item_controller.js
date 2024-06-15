@@ -141,3 +141,7 @@ $('#item-refresh').click(function () {
    $('#lbl-search').val("");
    loadTable();
 });
+
+$("#spanItem").on('click', () => {
+    loadTable();
+});
