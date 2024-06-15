@@ -183,7 +183,26 @@ function reduceQty(code,qty) {
        }
     });
     $('#orderCart-tbody').empty();
-    cartTMList.splice(0, cartTMList.length);
     clearFields();
+    cartTMList.splice(0, cartTMList.length);
+}
+
+function clearFields() {
+    $('#selectitemcode').text("");
+    $('#itemcode').text("");
+    $('#itemname').text("");
+    $('#itemprice').text("");
+    $('#qty').text("");
+    $('#orderqty').text("");
+    $('#cusid').val("");
+    $('#selectcusid').text("");
+    $('#name').val("");
+    $('#tp').val("");
+    $('#address').val("");
+    $('#sub-total').text('Sub Total: ');
+    $('#cart-total').text('Total: ');
+    $('#discount').val(0);
+    $('#balance').val('');
+    $('#cash').val('');
 }
 
