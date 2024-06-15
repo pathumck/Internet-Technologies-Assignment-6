@@ -38,3 +38,14 @@ $("#spanOrder").on('click', () => {
     loadCustomers();
 });
 
+$('#selectcusid').click(function () {
+    $('#cusid').val($('#selectcusid').val());
+    customers.forEach(customer => {
+        if ($('#selectcusid').val()===customer.id) {
+            $('#tp').val(customer.tp);
+            $('#address').val(customer.address);
+            $('#name').val(customer.name);
+        }
+    });
+});
+
