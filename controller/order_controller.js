@@ -61,3 +61,13 @@ function loadItems() {
 
 }
 
+$('#selectitemcode').click(function () {
+    $('#itemcode').val($('#selectitemcode').val());
+    items.forEach(item => {
+        if ($('#selectitemcode').val()===item.code) {
+            $('#itemname').val(item.name);
+            $('#itemprice').val(item.price);
+            $('#qty').val(item.qty);
+        }
+    });
+});
