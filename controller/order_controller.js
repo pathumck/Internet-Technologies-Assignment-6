@@ -172,6 +172,11 @@ $('#purchase-btn').click(function () {
 
     cartTMList.forEach(function (item, index) {
         reduceQty(item.code, item.qty);
+        Swal.fire({
+            title: "Order Placed Successfully",
+            text: "You clicked the button!",
+            icon: "success"
+          });
     })
 });
 

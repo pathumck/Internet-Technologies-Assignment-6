@@ -1,6 +1,7 @@
 import {ItemModel} from "../model/ItemModel.js";
 import {items} from "../db/db.js";
 
+validation();
 
 $('#item-save').click(function () {
     var code = $('#item-code').val();
@@ -145,3 +146,58 @@ $('#item-refresh').click(function () {
 $("#spanItem").on('click', () => {
     loadTable();
 });
+
+
+function validation(){
+
+    $('#item-code').on('propertychange input', function (e) {
+
+        var code = $('#item-code').val();
+
+        if(!code.match("[I]\\d{3,}")){
+            $('#item-code').css("border","2px solid red");
+        }else{
+            $('#item-code').css("border","2px solid #92F646");
+        }
+
+    });
+
+    $('#item-name').on('propertychange input', function (e) {
+
+        var name = $('#item-name').val();
+
+        if(!name.match( "^[A-Z][a-zA-Z]{2,}$")){
+            $('#item-name').css("border","2px solid red");
+        }else{
+            $('#item-name').css({"border":"2px solid #92F646"});
+        }
+
+    });
+
+    $('#item-price').on('propertychange input', function (e) {
+
+        var price = $('#item-price').val();
+
+
+        if(!price.match("^\\d+$")){
+            $('#item-price').css("border","2px solid red");
+        }else{
+            $('#item-price').css("border","2px solid #92F646");
+        }
+
+    });
+
+    $('#item-qty').on('propertychange input', function (e) {
+
+        var qty = $('#item-qty').val();
+
+        if(!qty.match( "^\\d+$")){
+            $('#item-qty').css("border","2px solid red");
+        }else{
+            $('#item-qty').css("border","2px solid #92F646");
+        }
+
+    });
+
+
+}
