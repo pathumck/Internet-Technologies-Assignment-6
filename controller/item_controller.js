@@ -9,16 +9,33 @@ $('#item-save').click(function () {
     var price = $('#item-price').val();
     var qty = $('#item-qty').val();
 
-    let itemm = new ItemModel(code, name, price, qty);
-    items.push(itemm);
+    const itemData = {
+        id: code,
+        name: name,
+        price: price,
+        qty: qty
+    };
 
-    //clear model fields
-    $('#item-code').val('');
-    $('#item-name').val('');
-    $('#item-price').val('');
-    $('#item-qty').val('');
+    const itemJSON = JSON.stringify(itemData);
+    $.ajax({
+        url: "http://localhost:8080/possystem/item",
+        type: "POST",
+        data: itemJSON,
+        headers: { "Content-Type": "application/json" },
+        success: (res) => {
+            console.log(JSON.stringify(res));
+            alert("Item details have been successfully saved.");
 
-    loadTable();
+            $('#item-code').val('');
+            $('#item-name').val('');
+            $('#item-price').val('');
+            $('#item-qty').val('');
+        },
+        error: (res) => {
+            console.error(res);
+            alert("An error occurred while saving item details. Please try again.");
+        }
+    });
 });
 
 function loadTable() {
