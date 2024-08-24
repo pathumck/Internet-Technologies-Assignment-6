@@ -131,55 +131,86 @@ function searchItemByCode(searchCode) {
 
     tableBody.empty();
 
-    var filteredItems = items.filter(function (item) {
-        return item.code.toLowerCase().includes(searchCode.toLowerCase());
-    });
+    $.ajax({
+        url: 'http://localhost:8080/possystem/item',
+        type: 'GET',
+        data: { id: searchCode },
+        dataType: 'json',
+        success: function(item) {
 
-    filteredItems.forEach(function (item, index) {
-        var row = $('<tr>');
+            if (item) {
+                var row = $('<tr>');
 
-        $('<td>').text(item.code).appendTo(row);
-        $('<td>').text(item.name).appendTo(row);
-        $('<td>').text(item.price).appendTo(row);
-        $('<td>').text(item.qty).appendTo(row);
+                $('<td>').text(item.id).appendTo(row);
+                $('<td>').text(item.name).appendTo(row);
+                $('<td>').text(item.price).appendTo(row);
+                $('<td>').text(item.qty).appendTo(row);
 
-        var actionCell = $('<td>').addClass('table-action-col').appendTo(row);
+                var actionCell = $('<td>').addClass('table-action-col').appendTo(row);
 
-        // Update button
-        $('<button>').text('Update').addClass('btn btn-primary btn-sm mr-1')
-            .on('click', function () {
+                // Update button
+                $('<button>').text('Update').addClass('btn btn-primary btn-sm mr-1')
+                    .on('click', function () {
+                        $('#update-item-code').val(item.id);
+                        $('#update-item-name').val(item.name);
+                        $('#update-item-price').val(item.price);
+                        $('#update-item-qty').val(item.qty);
 
-                $('#update-item-code').val(item.code);
-                $('#update-item-name').val(item.name);
-                $('#update-item-price').val(item.price);
-                $('#update-item-qty').val(item.qty);
+                        $('#updateItemModal').modal('show');
 
-                $('#updateItemModal').modal('show');
+                        $('#update-item-btn').off('click').on('click', function () {
+                            var confirmUpdate = confirm('Are you sure you want to update this item?');
+                            if (confirmUpdate) {
+                                var updatedItem = {
+                                    id: $('#update-item-code').val(),
+                                    name: $('#update-item-name').val(),
+                                    price: $('#update-item-price').val(),
+                                    qty: $('#update-item-qty').val()
+                                };
 
-                $('#update-item-btn').off('click').on('click', function () {
-                    var confirmUpdate = confirm('Are you sure you want to update this item?');
-                    if (confirmUpdate) {
-                        item.name = $('#update-item-name').val();
-                        item.price = $('#update-item-price').val();
-                        item.qty = $('#update-item-qty').val();
+                                $.ajax({
+                                    url: 'http://localhost:8080/possystem/item?id=' + updatedItem.id,
+                                    type: 'PATCH',
+                                    contentType: 'application/json',
+                                    data: JSON.stringify(updatedItem),
+                                    success: function() {
+                                        $('#updateItemModal').modal('hide');
+                                        loadTable();
+                                    },
+                                    error: function(xhr, status, error) {
+                                        alert('Failed to update item: ' + error);
+                                    }
+                                });
+                            }
+                        });
+                    }).appendTo(actionCell);
 
-                        $('#updateItemModal').modal('hide');
-                        loadTable();
-                    }
-                });
-            }).appendTo(actionCell);
+                // Delete button
+                $('<button>').text('Delete').addClass('btn btn-danger btn-sm')
+                    .on('click', function () {
+                        var confirmDelete = confirm('Are you sure you want to delete this item?');
+                        if (confirmDelete) {
+                            $.ajax({
+                                url: 'http://localhost:8080/possystem/item?id=' + item.id,
+                                type: 'DELETE',
+                                success: function() {
+                                    loadTable();
+                                },
+                                error: function(xhr, status, error) {
+                                    alert('Failed to delete item: ' + error);
+                                }
+                            });
+                        }
+                    }).appendTo(actionCell);
 
-        // Delete button
-        $('<button>').text('Delete').addClass('btn btn-danger btn-sm')
-            .on('click', function () {
-                var confirmDelete = confirm('Are you sure you want to delete this item?');
-                if (confirmDelete) {
-                    items.splice(index, 1);
-                    loadTable();
-                }
-            }).appendTo(actionCell);
-
-        row.appendTo(tableBody);
+                row.appendTo(tableBody);
+            } else {
+                tableBody.append('<tr><td colspan="5">No items found.</td></tr>');
+            }
+        },
+        error: function(xhr, status, error) {
+            alert('Failed to search items: ' + error);
+        }
     });
 }
 
