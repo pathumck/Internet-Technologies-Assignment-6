@@ -10,17 +10,35 @@ $('#customer-save').click(function () {
     var address = $('#customer-address').val();
     var tp = $('#customer-tp').val();
 
-    let customerr = new CustomerModel(id,name,address,tp);
-    customers.push(customerr);
+    const customerData = {
+        id: id,
+        name: name,
+        address: address,
+        phone: tp
+    };
 
-    //clear model fields
-    $('#customer-id').val('');
-    $('#customer-name').val('');
-    $('#customer-address').val('');
-    $('#customer-tp').val('');
+    const customerJSON = JSON.stringify(customerData);
+    $.ajax({
+        url: "http://localhost:8080/possystem/customer",
+        type: "POST",
+        data: customerJSON,
+        headers: { "Content-Type": "application/json" },
+        success: (res) => {
+            console.log(JSON.stringify(res));
+            alert("Customer details have been successfully saved.");
 
-    loadTable();
+            $('#customer-id').val('');
+            $('#customer-name').val('');
+            $('#customer-address').val('');
+            $('#customer-tp').val('');
+        },
+        error: (res) => {
+            console.error(res);
+            alert("An error occurred while saving customer details. Please try again.");
+        }
+    });
 });
+
 
 function loadTable() {
     var tableBody = $('#table-customer').find('tbody');
