@@ -135,60 +135,89 @@ function searchCustomerByCode(searchCode) {
 
     tableBody.empty();
 
-    var filteredItems = customers.filter(function (customer) {
-        return customer.id.toLowerCase().includes(searchCode.toLowerCase());
-    });
+    $.ajax({
+        url: 'http://localhost:8080/possystem/customer',
+        type: 'GET',
+        data: { id: searchCode },
+        dataType: 'json',
+        success: function(customer) {
 
-    filteredItems.forEach(function (customer, index) {
-        var row = $('<tr>');
+            if (customer) {
+                var row = $('<tr>');
 
-        $('<td>').text(customer.id).appendTo(row);
-        $('<td>').text(customer.name).appendTo(row);
-        $('<td>').text(customer.address).appendTo(row);
-        $('<td>').text(customer.tp).appendTo(row);
+                $('<td>').text(customer.id).appendTo(row);
+                $('<td>').text(customer.name).appendTo(row);
+                $('<td>').text(customer.address).appendTo(row);
+                $('<td>').text(customer.phone).appendTo(row);
 
-        var actionCell = $('<td>').addClass('table-action-col').appendTo(row);
+                var actionCell = $('<td>').addClass('table-action-col').appendTo(row);
 
-        // Update button
-        $('<button>').text('Update').addClass('btn btn-primary btn-sm mr-1')
-            .on('click', function () {
+                // Update button
+                $('<button>').text('Update').addClass('btn btn-primary btn-sm mr-1')
+                    .on('click', function () {
+                        $('#update-customer-id').val(customer.id);
+                        $('#update-customer-name').val(customer.name);
+                        $('#update-customer-address').val(customer.address);
+                        $('#update-customer-tp').val(customer.phone);
 
-                validation()
+                        $('#updateCustomerModal').modal('show');
 
-                $('#update-customer-id').val(customer.id);
-                $('#update-customer-name').val(customer.name);
-                $('#update-customer-address').val(customer.price);
-                $('#update-customer-tp').val(customer.tp);
+                        $('#update-customer-btn').off('click').on('click', function () {
+                            var confirmUpdate = confirm('Are you sure you want to update this customer?');
+                            if (confirmUpdate) {
+                                var updatedCustomer = {
+                                    id: $('#update-customer-id').val(),
+                                    name: $('#update-customer-name').val(),
+                                    address: $('#update-customer-address').val(),
+                                    phone: $('#update-customer-tp').val()
+                                };
 
-                $('#updateCustomerModal').modal('show');
+                                $.ajax({
+                                    url: 'http://localhost:8080/possystem/customer?id=' + updatedCustomer.id,
+                                    type: 'PATCH',
+                                    contentType: 'application/json',
+                                    data: JSON.stringify(updatedCustomer),
+                                    success: function() {
+                                        $('#updateCustomerModal').modal('hide');
+                                        loadTable();
+                                    },
+                                    error: function(xhr, status, error) {
+                                        alert('Failed to update customer: ' + error);
+                                    }
+                                });
+                            }
+                        });
+                    }).appendTo(actionCell);
 
-                $('#update-customer-btn').off('click').on('click', function () {
-                    var confirmUpdate = confirm('Are you sure you want to update this customer?');
-                    if (confirmUpdate) {
-                        item.name = $('#update-customer-name').val();
-                        item.address = $('#update-item-address').val();
-                        item.tp = $('#update-item-tp').val();
+                // Delete button
+                $('<button>').text('Delete').addClass('btn btn-danger btn-sm')
+                    .on('click', function () {
+                        var confirmDelete = confirm('Are you sure you want to delete this customer?');
+                        if (confirmDelete) {
+                            $.ajax({
+                                url: 'http://localhost:8080/possystem/customer?id=' + customer.id,
+                                type: 'DELETE',
+                                success: function() {
+                                    loadTable();
+                                },
+                                error: function(xhr, status, error) {
+                                    alert('Failed to delete customer: ' + error);
+                                }
+                            });
+                        }
+                    }).appendTo(actionCell);
 
-                        $('#updateCustomerModal').modal('hide');
-                        loadTable();
-                    }
-                });
-            }).appendTo(actionCell);
-
-        // Delete button
-        $('<button>').text('Delete').addClass('btn btn-danger btn-sm')
-            .on('click', function () {
-
-                var confirmDelete = confirm('Are you sure you want to delete this customer?');
-                if (confirmDelete) {
-                    customers.splice(index, 1);
-                    loadTable();
-                }
-            }).appendTo(actionCell);
-
-        row.appendTo(tableBody);
+                row.appendTo(tableBody);
+            } else {
+                tableBody.append('<tr><td colspan="5">No customers found.</td></tr>');
+            }
+        },
+        error: function(xhr, status, error) {
+            alert('Failed to search customers: ' + error);
+        }
     });
 }
+
 
 $('#customer-refresh').click(function () {
     $('#lbl-search-customer').val("");
