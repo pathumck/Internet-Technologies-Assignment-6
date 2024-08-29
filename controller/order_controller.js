@@ -2,6 +2,7 @@ import {cartTMList, customers, items} from "../db/db.js";
 import PlaceOrderModel from "../model/PlaceOrderModel.js";
 import {CartTm} from "../model/CartTm.js";
 import {CustomerModel} from "../model/CustomerModel.js";
+import {ItemModel} from "../model/ItemModel.js";
 
 let orderCounter = 1;
 var totalValueOfItems = 0;
@@ -88,11 +89,37 @@ $('#selectcusid').click(function () {
 function loadItems() {
     $('#selectitemcode').empty();
 
-    items.map(item => {
-        var recode = `<option>${item.code}</option>`
-        $('#selectitemcode').append(recode);
-    });
+    $.ajax({
+        url: 'http://localhost:8080/possystem/item',
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            let itemsArray = [];
 
+            response.forEach(function(itemData) {
+                let item = new ItemModel(
+                    itemData.id,
+                    itemData.name,
+                    itemData.price,
+                    itemData.qty
+                );
+                itemsArray.push(item);
+            });
+
+            let comboBox = $('#selectitemcode');
+
+            comboBox.append('<option value="">Select Item Code</option>');
+
+            itemsArray.forEach(function(item) {
+                let option = `<option value="${item.code}">${item.code}</option>`;
+                comboBox.append(option);
+            });
+        },
+        error: function(xhr, status, error) {
+            console.error('Error loading items:', error);
+            alert('Failed to load items.');
+        }
+    });
 }
 
 $('#selectitemcode').click(function () {
