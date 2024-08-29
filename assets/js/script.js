@@ -6,13 +6,29 @@ function replaceStyleSheet(stylesheetURL) {
 }
 
 $("#btnLogin").eq(0).on('click', () => {
-    replaceStyleSheet('/assets/styles/home.css');
-    $('#header').css({display: 'block'});
-    $('#login').css({display: 'none'});
-    $('#Item-Section').hide();
-    $('#Customer-Section').hide();
-    $('#Order-Section').hide();
-    $('#Order-Details-Section').hide();
+    let name = $('#username').val();
+    let password = $('#password').val();
+
+    $.ajax({
+        url: 'http://localhost:8080/possystem/login',
+        type: 'GET',
+        data: {
+            name: name,
+            password: password
+        },
+        success: function(response) {
+            replaceStyleSheet('/assets/styles/home.css');
+            $('#header').css({display: 'block'});
+            $('#login').css({display: 'none'});
+            $('#Item-Section').hide();
+            $('#Customer-Section').hide();
+            $('#Order-Section').hide();
+            $('#Order-Details-Section').hide();
+        },
+        error: function(xhr, status, error) {
+            alert(error);
+        }
+    });
 });
 
 $('#spanHome').on('click', function() {
