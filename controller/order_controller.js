@@ -68,11 +68,19 @@ $("#spanOrder").on('click', () => {
 
 $('#selectcusid').click(function () {
     $('#cusid').val($('#selectcusid').val());
-    customers.forEach(customer => {
-        if ($('#selectcusid').val()===customer.id) {
-            $('#tp').val(customer.tp);
+    $.ajax({
+        url: 'http://localhost:8080/possystem/customer',
+        type: 'GET',
+        data: { id: $("#selectcusid").val() },
+        dataType: 'json',
+        success: function(customer) {
+            $('#tp').val(customer.phone);
             $('#address').val(customer.address);
             $('#name').val(customer.name);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error fetching customer:', error);
+            alert('Failed to load customer data.');
         }
     });
 });
