@@ -1,6 +1,7 @@
 import {cartTMList, customers, items} from "../db/db.js";
 import PlaceOrderModel from "../model/PlaceOrderModel.js";
 import {CartTm} from "../model/CartTm.js";
+import {CustomerModel} from "../model/CustomerModel.js";
 
 let orderCounter = 1;
 var totalValueOfItems = 0;
@@ -28,14 +29,35 @@ function setDate() {
 }
 
 function loadCustomers() {
+    $.ajax({
+        url: 'http://localhost:8080/possystem/customer',
+        type: 'GET',
+        success: function(response) {
+            let customersArray = [];
 
-    $("#selectcusid").empty();
+            response.forEach(function(customerData) {
+                let customer = new CustomerModel(
+                    customerData.id,
+                    customerData.name,
+                    customerData.address,
+                    customerData.phone
+                );
+                customersArray.push(customer);
+            });
 
-    customers.map(customer => {
-        var recode = `<option>${customer.id}</option>`
+            let comboBox = $('#selectcusid');
 
-        $("#selectcusid").append(recode);
+            comboBox.empty();
+            comboBox.append('<option value="">Select Customer ID</option>');
 
+            customersArray.forEach(function(customer) {
+                comboBox.append('<option value="' + customer.id + '">' + customer.id + '</option>');
+            });
+
+        },
+        error: function(xhr, status, error) {
+            alert('Failed to retrieve customer data');
+        }
     });
 }
 
