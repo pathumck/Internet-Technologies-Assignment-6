@@ -134,7 +134,6 @@ $('#selectitemcode').click(function () {
             $('#itemname').val(item.name);
             $('#itemprice').val(item.price);
             $('#qty').val(item.qty);
-            console.log(item)
         },
         error: function(xhr, status, error) {
             console.error('Error fetching item:', error);
