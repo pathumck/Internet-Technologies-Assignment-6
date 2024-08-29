@@ -124,11 +124,21 @@ function loadItems() {
 
 $('#selectitemcode').click(function () {
     $('#itemcode').val($('#selectitemcode').val());
-    items.forEach(item => {
-        if ($('#selectitemcode').val()===item.code) {
+
+    $.ajax({
+        url: 'http://localhost:8080/possystem/item',
+        type: 'GET',
+        data: { id: $('#selectitemcode').val() },
+        dataType: 'json',
+        success: function(item) {
             $('#itemname').val(item.name);
             $('#itemprice').val(item.price);
             $('#qty').val(item.qty);
+            console.log(item)
+        },
+        error: function(xhr, status, error) {
+            console.error('Error fetching item:', error);
+            alert('Failed to load item data.');
         }
     });
 });
