@@ -213,6 +213,7 @@ function loadTableCart() {
     });
 
     loadSubTotal();
+    calDiscount();
 }
 
 function loadSubTotal() {
@@ -226,6 +227,10 @@ function loadSubTotal() {
 }
 
 $('#discount').click(function() {
+    calDiscount();
+});
+
+function calDiscount() {
     var totalText = $('#cart-total').text();
     var total = parseFloat(totalText.replace(/[^\d.-]/g, ''));
 
@@ -233,8 +238,11 @@ $('#discount').click(function() {
 
     var sub = total * (100 - dis) / 100;
 
+
     $('#sub-total').text('Sub Total: ' + sub.toFixed(2));
-});
+
+    $('#balance').val($('#cash').val()-sub);
+}
 
 $('#cash').on('input', function() {
     var totalText = $('#sub-total').text();
