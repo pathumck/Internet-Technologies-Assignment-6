@@ -143,24 +143,44 @@ $('#selectitemcode').click(function () {
 });
 
 $('#btn-cart').click(function () {
-   var code = $('#itemcode').val();
-   var name = $('#itemname').val();
-   var price = $('#itemprice').val();
-   var qty = $('#orderqty').val();
-   var total = price * qty;
+    var code = $('#itemcode').val();
+    var name = $('#itemname').val();
+    var price = parseFloat($('#itemprice').val());
+    var qty = parseInt($('#orderqty').val());
+    var qtyOnHand = parseInt($('#qty').val());
+    var total = price * qty;
 
-   let cart = new CartTm(code, name, price, qty, total);
+    if (qty > qtyOnHand) {
+        alert('The quantity exceeds the available stock.');
+        return;
+    }
 
-   cartTMList.push(cart);
+    let existingItem = cartTMList.find(item => item.code === code);
 
-   $('#itemcode').val("");
-   $('#itemname').val("");
-   $('#itemprice').val("");
-   $('#orderqty').val("");
-   $('#selectitemcode').val("");
-   $('#qty').val("");
+    if (existingItem) {
+        let newTotalQty = existingItem.qty + qty;
 
-   loadTableCart();
+        if (newTotalQty > qtyOnHand) {
+            alert('The quantity exceeds the available stock.');
+            return;
+        }
+
+        existingItem.qty = newTotalQty;
+        existingItem.total = existingItem.price * existingItem.qty;
+    } else {
+
+        let cart = new CartTm(code, name, price, qty, total);
+        cartTMList.push(cart);
+    }
+
+    $('#itemcode').val("");
+    $('#itemname').val("");
+    $('#itemprice').val("");
+    $('#orderqty').val("");
+    $('#selectitemcode').val("");
+    $('#qty').val("");
+
+    loadTableCart();
 });
 
 function loadTableCart() {
