@@ -264,15 +264,45 @@ $('#purchase-btn').click(function () {
         return;
     }
 
-    cartTMList.forEach(function (item, index) {
-        reduceQty(item.code, item.qty);
-        Swal.fire({
-            title: "Order Placed Successfully",
-            text: "You clicked the button!",
-            icon: "success"
-          });
-    })
+    let subTotalText = $('#sub-total').text();
+    let subTotalValue = parseFloat(subTotalText.replace(/[^\d.-]/g, ''));
+
+    let place = new PlaceOrderModel(
+        $('#orderid').val(),
+        $('#cusid').val(),
+        subTotalValue,
+        $('#date').val(),
+        cartTMList
+    );
+
+    let orderData = JSON.stringify(place);
+
+    $.ajax({
+        url: 'http://localhost:8080/possystem/order',
+        type: 'POST',
+        contentType: 'application/json',
+        data: orderData,
+        success: function(response) {
+            Swal.fire({
+                title: "Order Placed Successfully",
+                text: "Order ID: " + response.orderId,
+                icon: "success"
+            });
+
+            cartTMList.length = 0;
+            loadTableCart();
+            clearFields();
+        },
+        error: function(xhr, status, error) {
+            Swal.fire({
+                title: "Order Failed",
+                text: "An error occurred while placing the order.",
+                icon: "error"
+            });
+        }
+    });
 });
+
 
 function reduceQty(code,qty) {
 

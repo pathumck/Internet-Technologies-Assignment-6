@@ -1,7 +1,7 @@
 export default class PlaceOrderModel {
-    constructor(orderId, cusName, total, date, cartTmList) {
+    constructor(orderId, cusId, total, date, cartTmList) {
         this._orderId = orderId;
-        this._cusName = cusName;
+        this._cusId = cusId;
         this._total = total;
         this._date = date;
         this._cartTmList = cartTmList;
@@ -11,8 +11,8 @@ export default class PlaceOrderModel {
         return this._orderId;
     }
 
-    get cusName() {
-        return this._cusName;
+    get cusId() {
+        return this._cusId;
     }
 
     get total() {
@@ -31,8 +31,8 @@ export default class PlaceOrderModel {
         this._orderId = orderId;
     }
 
-    set cusName(cusName) {
-        this._cusName = cusName;
+    set cusId(cusId) {
+        this._cusId = cusId;
     }
 
     set total(total) {
