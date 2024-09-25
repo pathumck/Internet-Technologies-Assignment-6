@@ -4,23 +4,29 @@ import {CartTm} from "../model/CartTm.js";
 import {CustomerModel} from "../model/CustomerModel.js";
 import {ItemModel} from "../model/ItemModel.js";
 
-let orderCounter = 1;
-var totalValueOfItems = 0;
-
-loadOrderId();
+generateOrderId();
 loadItems();
 setDate();
 loadCustomers();
 $('#discount').val(0);
-function generateOrderId() {
-    const prefix = 'OR00';
-    const orderId = `${prefix}${orderCounter}`;
-    orderCounter++;
-    return orderId;
-}
 
-function loadOrderId() {
-    $("#orderid").val(generateOrderId());
+function generateOrderId() {
+    $.ajax({
+        url: 'http://localhost:8080/possystem/order',
+        type: 'GET',
+        dataType: 'text',
+        success: function(response) {
+            $("#orderid").val(response);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error('Error:', textStatus, errorThrown);
+            if (jqXHR.status === 404) {
+                console.error('Order ID not found.');
+            } else {
+                console.error('Internal server error.');
+            }
+        }
+    });
 }
 
 function setDate() {
@@ -292,6 +298,7 @@ $('#purchase-btn').click(function () {
             cartTMList.length = 0;
             loadTableCart();
             clearFields();
+            generateOrderId();
         },
         error: function(xhr, status, error) {
             Swal.fire({
@@ -333,5 +340,6 @@ function clearFields() {
     $('#discount').val(0);
     $('#balance').val('');
     $('#cash').val('');
+    $('#orderid').val('');
 }
 
