@@ -80,8 +80,8 @@ $('#selectcusid').click(function () {
             $('#name').val(customer.name);
         },
         error: function(xhr, status, error) {
-            console.error('Error fetching customer:', error);
-            alert('Failed to load customer data.');
+            console.log('Error fetching customer:', error);
+            //alert('Failed to load customer data.');
         }
     });
 });
@@ -136,8 +136,8 @@ $('#selectitemcode').click(function () {
             $('#qty').val(item.qty);
         },
         error: function(xhr, status, error) {
-            console.error('Error fetching item:', error);
-            alert('Failed to load item data.');
+            console.log('Error fetching item:', error);
+            //alert('Failed to load item data.');
         }
     });
 });
